@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>拖拽</title>
+<style>
+#box{
+    position:absolute;
+    left: 0px;
+    top: 32px;
+    width: 100px;
+    height: 100px;
+    background: red;
+    cursor: move;
+}
+    </style>   
+</head>
+<body>
+     <input type="button" value="原路返回"/>
+    <div id ="box"></div>
+<script>
+let warp = document.getElementById("warp");
+let box = document.getElementById("box");
+let startClient = {};
+let startPosition = {};    
+ //监听鼠标按下
+box.addEventListener("mousedown", function(e){
+//获取鼠标按下的位置     
+startClient = {
+    x: e.clientX,
+    y: e.clientY
+};   
+// 按下时元素位置 
+let startPositionL = box.offsetLeft
+let startPositiont = box.offsetTop
+document.addEventListener("mousemove", function (e) {
+    //获取鼠标当前的位置
+    let nowClient = {
+        x: e.clientX,
+        y: e.clientY
+    };
+    //鼠标移动的距离
+    let disClient = {
+    x: nowClient.x - startClient.x,
+    y: nowClient.y - startClient.y
+    };
+    box.style.left = startPositionL + disClient.x +"px";
+    box.style.top = startPositiont + disClient.y +"px";
+});            
+    document.addEventListener("mouseup", function (e) {
+    //获取鼠标离开的位置    
+    var downDisX = e.clientX;
+    var downDisY = e.clientY;
+    document.onmousemove = null;
+    document.onmouseup = null;
+    //执行一次
+    once: true
+    });  
+});  
+//盒子移动的距离             
+</script>
+<script src="miaov.js"></script>
+</body>
+</html>
